@@ -8,6 +8,8 @@ public interface Problem {
 
 	public ProblemState move(ProblemState desiredState);
 
+	public int f();
+	
 	public boolean isSolved();
 	
 	public void printSolution();
