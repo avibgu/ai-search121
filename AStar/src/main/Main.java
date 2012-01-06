@@ -1,8 +1,10 @@
 package main;
 
+import problem.Heuristic;
 import problem.Problem;
 import problem.ProblemState;
 import problem.TilePuzzle;
+import problem.TilePuzzleHeuristic;
 import problem.TilePuzzleState;
 
 import algorithm.*;
@@ -14,10 +16,12 @@ public class Main {
 		int[][] initTiles = null;	//TODO
 		int[][] goalTiles = null;	//TODO
 		
-		ProblemState init = new TilePuzzleState(initTiles);
-		ProblemState goal = new TilePuzzleState(goalTiles);
+		Heuristic heuristic = new TilePuzzleHeuristic();
 		
-		Problem tp = new TilePuzzle(init, goal);
+		ProblemState init = new TilePuzzleState(initTiles, heuristic);
+		ProblemState goal = new TilePuzzleState(goalTiles, heuristic);
+		
+		Problem tp = new TilePuzzle(init, goal, heuristic);
 
 		Algorithm a = new AStar();
 		

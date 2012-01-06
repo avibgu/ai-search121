@@ -12,13 +12,13 @@ public class TilePuzzle implements Problem {
 	
 	protected boolean _solved;
 	
-	public TilePuzzle(ProblemState initState, ProblemState goalState){
+	public TilePuzzle(ProblemState initState, ProblemState goalState, Heuristic heuristic){
 		
 		_initState = initState;
 		_currentState = initState;;
 		_goalState = goalState;
 		
-		_heuristic = new TilePuzzleHeuristic();
+		_heuristic = heuristic;
 		
 		_solved = false;
 	}
