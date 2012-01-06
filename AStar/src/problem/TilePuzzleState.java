@@ -2,7 +2,7 @@ package problem;
 
 public class TilePuzzleState implements ProblemState{
 
-	protected TilePuzzleState	parent;
+	protected ProblemState	parent;
 	protected int[][]			tiles;
 	protected int 				g;
 	protected Heuristic			heuristic;
@@ -70,5 +70,11 @@ public class TilePuzzleState implements ProblemState{
 	@Override
 	public ProblemState getParent() {
 		return parent;
+	}
+
+	@Override
+	public void setParent(ProblemState parent) {
+		this.parent = parent;
+		
 	}
 }

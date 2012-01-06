@@ -23,7 +23,7 @@ public class Main {
 		
 		Problem tp = new TilePuzzle(init, goal, heuristic);
 
-		Algorithm a = new AStar();
+		Algorithm a = new AStar(init,goal);
 		
 		a.solve(tp);
 		

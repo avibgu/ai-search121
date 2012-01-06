@@ -48,4 +48,10 @@ public class TilePuzzle implements Problem {
 		
 		System.out.println(_goalState);
 	}
+
+	@Override
+	public int getDist(ProblemState from, ProblemState to) {
+		return 0;
+		
+	}
 }
