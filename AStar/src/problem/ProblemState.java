@@ -6,5 +6,5 @@ public interface ProblemState {
 	
 	public boolean equals(ProblemState other);
 	
-	public int f();
+	public int f(TilePuzzleState goalState);
 }

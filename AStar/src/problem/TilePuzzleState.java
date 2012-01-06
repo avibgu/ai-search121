@@ -5,6 +5,7 @@ public class TilePuzzleState implements ProblemState{
 	protected TilePuzzleState	parent;
 	protected int[][]			tiles;
 	protected int 				g;
+	protected Heuristic heuristic;
 
 	public TilePuzzleState(int[][] _tiles){
 		
@@ -53,8 +54,8 @@ public class TilePuzzleState implements ProblemState{
 	}
 
 	@Override
-	public int f() {
-		return g + heuristic.calcH(currentState, goalState);
+	public int f(TilePuzzleState goalState) {
+		return g + heuristic.calcH(this, goalState);
 	}
 	
 	public int getG() {
