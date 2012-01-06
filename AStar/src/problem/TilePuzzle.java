@@ -8,8 +8,6 @@ public class TilePuzzle implements Problem {
 	protected ProblemState _currentState;
 	protected ProblemState _goalState;
 	
-	protected int _g;
-	
 	protected Heuristic  _heuristic;
 	
 	protected boolean _solved;
@@ -19,8 +17,6 @@ public class TilePuzzle implements Problem {
 		_initState = initState;
 		_currentState = initState;;
 		_goalState = goalState;
-		
-		_g = 0;
 		
 		_heuristic = new TilePuzzleHeuristic();
 		
@@ -36,15 +32,7 @@ public class TilePuzzle implements Problem {
 	@Override
 	public ProblemState move(ProblemState desiredState){
 		// TODO Auto-generated method stub
-		
-		_g++;
-		
 		return null;
-	}
-	
-	@Override
-	public int f(){
-		return _g + _heuristic.calcH(_currentState, _goalState);
 	}
 
 	@Override

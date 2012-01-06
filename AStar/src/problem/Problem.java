@@ -7,8 +7,6 @@ public interface Problem {
 	public Vector<ProblemState> getPossibleMoves();
 
 	public ProblemState move(ProblemState desiredState);
-
-	public int f();
 	
 	public boolean isSolved();
 	

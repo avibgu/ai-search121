@@ -2,8 +2,9 @@ package problem;
 
 public class TilePuzzleState implements ProblemState{
 
-	protected int[][] _tiles;
-	
+	protected int[][]	tiles;
+	protected int 		g;
+
 	public TilePuzzleState(int[][] _tiles){
 		
 	}
@@ -13,7 +14,7 @@ public class TilePuzzleState implements ProblemState{
 		
 		StringBuffer sb = new StringBuffer();
 		
-		for (int[] row: _tiles){
+		for (int[] row: tiles){
 			
 			for (int cellValue: row)
 				sb.append(cellValue + "\t");
@@ -34,19 +35,32 @@ public class TilePuzzleState implements ProblemState{
 		if (!(other instanceof TilePuzzleState))
 			ans = false;
 		
-		else if (_tiles.length != ((TilePuzzleState)other)._tiles.length)
+		else if (tiles.length != ((TilePuzzleState)other).tiles.length)
 			ans = false;
 		
-		for (int i = 0; i < _tiles.length && ans; i++){
+		for (int i = 0; i < tiles.length && ans; i++){
 		
-			if (_tiles[i].length != ((TilePuzzleState)other)._tiles[i].length)
+			if (tiles[i].length != ((TilePuzzleState)other).tiles[i].length)
 				ans = false;
 		
-			for (int j = 0; j < _tiles[i].length && ans; j++)
-				if (_tiles[i][j] != ((TilePuzzleState)other)._tiles[i][j])
+			for (int j = 0; j < tiles[i].length && ans; j++)
+				if (tiles[i][j] != ((TilePuzzleState)other).tiles[i][j])
 					ans = false;					
 		}
 		
 		return ans;
+	}
+
+	@Override
+	public int f() {
+		return g + heuristic.calcH(currentState, goalState);
+	}
+	
+	public int getG() {
+		return g;
+	}
+
+	public void setG(int g) {
+		this.g = g;
 	}
 }
