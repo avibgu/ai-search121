@@ -2,8 +2,9 @@ package problem;
 
 public class TilePuzzleState implements ProblemState{
 
-	protected int[][]	tiles;
-	protected int 		g;
+	protected TilePuzzleState	parent;
+	protected int[][]			tiles;
+	protected int 				g;
 
 	public TilePuzzleState(int[][] _tiles){
 		
@@ -62,5 +63,10 @@ public class TilePuzzleState implements ProblemState{
 
 	public void setG(int g) {
 		this.g = g;
+	}
+
+	@Override
+	public ProblemState getParent() {
+		return parent;
 	}
 }
