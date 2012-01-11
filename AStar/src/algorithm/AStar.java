@@ -52,30 +52,42 @@ public class AStar implements Algorithm{
 
 	@Override
 	public void solve(Problem tp) {
+		
 		int tentative_g_score;
 		boolean tentative_is_better;
+		
 		while (!openSet.isEmpty()){
-			 ProblemState x = findFMin();
+			 
+			ProblemState x = findFMin();
+			 
 			 if (x == goal){
 			//	 return reconstruct_path(goal.getParent());
 				 return;
 			 }
+			 
 			 openSet.remove(x);
 		     closeSet.add(x);
-		     Vector<ProblemState> possible_moves = tp.getPossibleMoves();
+		     
+		     Vector<ProblemState> possible_moves = tp.getPossibleMoves(x);
+		     
 		     for (int i=0; i<possible_moves.size(); ++i){
-	             ProblemState problemState = possible_moves.get(i);
-				if (closeSet.contains(problemState)){
+	            
+		    	 ProblemState problemState = possible_moves.get(i);
+				
+		    	 if (closeSet.contains(problemState)){
 	                 continue;
 	             }
-	             tentative_g_score = x.getG() + tp.getDist(x,problemState); 
+	             
+		    	 tentative_g_score = x.getG() + tp.getDist(x,problemState); 
 	 
 	             if (!openSet.contains(problemState)){
 	                 openSet.add(problemState);
 	                 tentative_is_better = true;
-	             } else if (tentative_g_score < problemState.getG()){
+	             }
+	             else if (tentative_g_score < problemState.getG()){
 	                 tentative_is_better = true;
-	             }else{
+	             }
+	             else{
 	                 tentative_is_better = false;
 	             }
 	             if (tentative_is_better){

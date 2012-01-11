@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public interface Problem {
 
-	public Vector<ProblemState> getPossibleMoves();
+	public Vector<ProblemState> getPossibleMoves(ProblemState ps);
 
 	public ProblemState move(ProblemState desiredState);
 	

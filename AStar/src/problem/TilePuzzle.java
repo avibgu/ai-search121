@@ -1,16 +1,17 @@
 package problem;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class TilePuzzle implements Problem {
-
-	protected ProblemState _initState;
-	protected ProblemState _currentState;
-	protected ProblemState _goalState;
 	
-	protected Heuristic  _heuristic;
-	
-	protected boolean _solved;
+	protected	ProblemState				_initState;
+	protected	ProblemState				_currentState;
+	protected	ProblemState				_goalState;
+	protected	Heuristic					_heuristic;
+	protected	boolean						_solved;
+	protected	Map<String, ProblemState>	_alreadyInitialized;
 	
 	public TilePuzzle(ProblemState initState, ProblemState goalState, Heuristic heuristic){
 		
@@ -21,12 +22,31 @@ public class TilePuzzle implements Problem {
 		_heuristic = heuristic;
 		
 		_solved = false;
+		
+		_alreadyInitialized = new HashMap<String, ProblemState>();
 	}
-
+	
 	@Override
-	public Vector<ProblemState> getPossibleMoves(){
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<ProblemState> getPossibleMoves(ProblemState ps) {
+
+		Vector<ProblemState> moves = ps.getPossibleMoves();
+		
+		Vector<ProblemState> ans = new Vector<ProblemState>();
+		
+		for (ProblemState state : moves){
+			
+			ProblemState x = _alreadyInitialized.get(state.getId());
+			
+			if (null == x){
+				
+				ans.add(state);
+				_alreadyInitialized.put(state.getId(), state);
+			}
+			
+			else ans.add(x);
+		}
+		
+		return ans;
 	}
 	
 	@Override
@@ -51,7 +71,7 @@ public class TilePuzzle implements Problem {
 
 	@Override
 	public int getDist(ProblemState from, ProblemState to) {
-		return 0;
+		return 1;
 		
 	}
 }

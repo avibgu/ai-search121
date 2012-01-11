@@ -1,5 +1,7 @@
 package problem;
 
+import java.util.Vector;
+
 public interface ProblemState {
 
 	public ProblemState getParent();
@@ -13,4 +15,10 @@ public interface ProblemState {
 	public int getG();
 		
 	public void setG(int g);
+	
+	public void setId(String id);
+	
+	public String getId();
+
+	public Vector<ProblemState> getPossibleMoves();
 }

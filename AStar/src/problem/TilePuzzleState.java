@@ -1,23 +1,45 @@
 package problem;
 
+import java.util.Vector;
+
 public class TilePuzzleState implements ProblemState{
 
-	protected ProblemState	parent;
+	protected String			id;
+	protected ProblemState		parent;
 	protected int[][]			tiles;
 	protected int 				g;
 	protected Heuristic			heuristic;
-
+	
 	public TilePuzzleState(int[][] tTiles, Heuristic tHeuristic){
-		tiles = tTiles;
+		setTiles(tTiles);
 		heuristic = tHeuristic;
+		calcId();
 	}
 	
+	public void calcId() {
+		
+		StringBuffer sb = new StringBuffer();
+		
+		for (int ci = 0; ci < tiles.length; ci++){
+			
+			for (int cj = 0; cj < tiles[ci].length; cj++){
+			
+				if (tiles[ci][cj] < 10)
+					sb.append("0");
+				
+				sb.append(tiles[ci][cj]);
+			}
+		}
+
+		id = sb.toString();
+	}
+
 	@Override
 	public String toString(){
 		
 		StringBuffer sb = new StringBuffer();
 		
-		for (int[] row: tiles){
+		for (int[] row: getTiles()){
 			
 			for (int cellValue: row)
 				sb.append(cellValue + "\t");
@@ -38,16 +60,16 @@ public class TilePuzzleState implements ProblemState{
 		if (!(other instanceof TilePuzzleState))
 			ans = false;
 		
-		else if (tiles.length != ((TilePuzzleState)other).tiles.length)
+		else if (getTiles().length != ((TilePuzzleState)other).getTiles().length)
 			ans = false;
 		
-		for (int i = 0; i < tiles.length && ans; i++){
+		for (int i = 0; i < getTiles().length && ans; i++){
 		
-			if (tiles[i].length != ((TilePuzzleState)other).tiles[i].length)
+			if (getTiles()[i].length != ((TilePuzzleState)other).getTiles()[i].length)
 				ans = false;
 		
-			for (int j = 0; j < tiles[i].length && ans; j++)
-				if (tiles[i][j] != ((TilePuzzleState)other).tiles[i][j])
+			for (int j = 0; j < getTiles()[i].length && ans; j++)
+				if (getTiles()[i][j] != ((TilePuzzleState)other).getTiles()[i][j])
 					ans = false;					
 		}
 		
@@ -76,5 +98,31 @@ public class TilePuzzleState implements ProblemState{
 	public void setParent(ProblemState parent) {
 		this.parent = parent;
 		
+	}
+
+	public void setTiles(int[][] tiles) {
+		this.tiles = tiles;
+	}
+
+	public int[][] getTiles() {
+		return tiles;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public Vector<ProblemState> getPossibleMoves() {
+		Vector<ProblemState> result = new Vector<ProblemState>();
+		
+		for (int tile : tiles){
+			
+		}
+		return null;
 	}
 }
