@@ -13,8 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		int[][] initTiles = null;	//TODO
-		int[][] goalTiles = null;	//TODO
+		int[][] initTiles = {{0,2},{1,3}};
+		int[][] goalTiles = {{0,1},{2,3}};
 		
 		Heuristic heuristic = new TilePuzzleHeuristic();
 		

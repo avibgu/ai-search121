@@ -125,10 +125,18 @@ public class TilePuzzleState implements ProblemState{
 		int ci = 0;
 		int cj = 0;
 		
-		for (; ci < tiles.length; ci++)
-			for (; cj < tiles[ci].length; cj++)
-				if (tiles[ci][cj] == 0)
+		boolean dontStop = true;
+		
+		for (; ci < tiles.length && dontStop; ci++){
+			
+			for (; cj < tiles[ci].length && dontStop; cj++){
+				
+				if (tiles[ci][cj] == 0){
+					dontStop = false;
 					break;
+				}
+			}
+		}
 		
 		if (ci != 0){	// down
 			
