@@ -11,6 +11,7 @@ public class TilePuzzleState implements ProblemState{
 	protected Heuristic			heuristic;
 	
 	public TilePuzzleState(int[][] tTiles, Heuristic tHeuristic){
+		
 		setTiles(tTiles);
 		heuristic = tHeuristic;
 		calcId();
@@ -118,11 +119,57 @@ public class TilePuzzleState implements ProblemState{
 
 	@Override
 	public Vector<ProblemState> getPossibleMoves() {
+		
 		Vector<ProblemState> result = new Vector<ProblemState>();
 		
-		for (int tile : tiles){
+		int ci = 0;
+		int cj = 0;
+		
+		for (; ci < tiles.length; ci++)
+			for (; cj < tiles[ci].length; cj++)
+				if (tiles[ci][cj] == 0)
+					break;
+		
+		if (ci != 0){	// down
 			
+			int[][] tTiles = tiles.clone();
+
+			tTiles[ci][cj] = tTiles[ci-1][cj];
+			tTiles[ci-1][cj] = 0;
+			
+			result.add(new TilePuzzleState(tTiles, heuristic));
 		}
-		return null;
+		
+		if (ci != tiles.length - 1){ //up
+		
+			int[][] tTiles = tiles.clone();
+
+			tTiles[ci][cj] = tTiles[ci+1][cj];
+			tTiles[ci+1][cj] = 0;
+			
+			result.add(new TilePuzzleState(tTiles, heuristic));
+		}
+		
+		if (cj != 0){ //right
+		
+			int[][] tTiles = tiles.clone();
+
+			tTiles[ci][cj] = tTiles[ci][cj-1];
+			tTiles[ci][cj-1] = 0;
+			
+			result.add(new TilePuzzleState(tTiles, heuristic));
+		}
+			
+		if (cj != tiles.length - 1){ //left
+		
+			int[][] tTiles = tiles.clone();
+
+			tTiles[ci][cj] = tTiles[ci][cj+1];
+			tTiles[ci][cj+1] = 0;
+			
+			result.add(new TilePuzzleState(tTiles, heuristic));
+		}
+		
+		return result;
 	}
 }
