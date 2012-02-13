@@ -74,4 +74,9 @@ public class TilePuzzle implements Problem {
 		return 1;
 		
 	}
+
+	@Override
+	public void setSolved(boolean b) {
+		_solved = b;
+	}
 }

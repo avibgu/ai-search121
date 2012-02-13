@@ -13,4 +13,6 @@ public interface Problem {
 	public void printSolution();
 	
 	public int getDist(ProblemState from, ProblemState to);
+
+	public void setSolved(boolean b);
 }

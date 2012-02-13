@@ -125,22 +125,24 @@ public class TilePuzzleState implements ProblemState{
 		int ci = 0;
 		int cj = 0;
 		
-		boolean dontStop = true;
+		boolean stop = false;
 		
-		for (; ci < tiles.length && dontStop; ci++){
+		for (ci = 0; ci < tiles.length; ci++){
 			
-			for (; cj < tiles[ci].length && dontStop; cj++){
+			for (cj = 0; cj < tiles[ci].length; cj++){
 				
-				if (tiles[ci][cj] == 0){
-					dontStop = false;
+				if (0 == tiles[ci][cj]){
+					stop = true;
 					break;
 				}
 			}
+			
+			if (stop) break;
 		}
-		
+
 		if (ci != 0){	// down
 			
-			int[][] tTiles = tiles.clone();
+			int[][] tTiles = cloneTiles();
 
 			tTiles[ci][cj] = tTiles[ci-1][cj];
 			tTiles[ci-1][cj] = 0;
@@ -150,7 +152,7 @@ public class TilePuzzleState implements ProblemState{
 		
 		if (ci != tiles.length - 1){ //up
 		
-			int[][] tTiles = tiles.clone();
+			int[][] tTiles = cloneTiles();
 
 			tTiles[ci][cj] = tTiles[ci+1][cj];
 			tTiles[ci+1][cj] = 0;
@@ -160,7 +162,7 @@ public class TilePuzzleState implements ProblemState{
 		
 		if (cj != 0){ //right
 		
-			int[][] tTiles = tiles.clone();
+			int[][] tTiles = cloneTiles();
 
 			tTiles[ci][cj] = tTiles[ci][cj-1];
 			tTiles[ci][cj-1] = 0;
@@ -170,7 +172,7 @@ public class TilePuzzleState implements ProblemState{
 			
 		if (cj != tiles.length - 1){ //left
 		
-			int[][] tTiles = tiles.clone();
+			int[][] tTiles = cloneTiles();
 
 			tTiles[ci][cj] = tTiles[ci][cj+1];
 			tTiles[ci][cj+1] = 0;
@@ -179,5 +181,18 @@ public class TilePuzzleState implements ProblemState{
 		}
 		
 		return result;
+	}
+
+	protected int[][] cloneTiles() {
+		
+		if (0 == tiles.length)
+			return new int[0][0];
+
+		int[][] tTiles = new int[tiles.length][tiles[0].length];
+		
+		for (int ci = 0; ci < tiles.length; ci++)
+			tTiles[ci] = tiles[ci].clone();
+		
+		return tTiles;
 	}
 }
