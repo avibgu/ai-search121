@@ -45,25 +45,25 @@ public class AStar implements Algorithm{
 		pStart.setG(0);
 	}
 	
-//	private ProblemState findFMin() {
-//		
-//		int min  = Integer.MAX_VALUE;
-//		
-//		ProblemState result = null;
-//		
-//		for (ProblemState state : openSet){
-//			
-//			int f_result = state.f(goal);
-//			
-//			if (f_result < min){
-//				
-//				min = f_result;
-//				result = state;
-//			}
-//		}
-//		
-//		return result;
-//	}
+	private ProblemState findFMin() {
+		
+		int min  = Integer.MAX_VALUE;
+		
+		ProblemState result = null;
+		
+		for (ProblemState state : openSet){
+			
+			int f_result = state.f(goal);
+			
+			if (f_result < min){
+				
+				min = f_result;
+				result = state;
+			}
+		}
+		
+		return result;
+	}
 
 	@Override
 	public void solve(Problem tp) {
@@ -73,9 +73,9 @@ public class AStar implements Algorithm{
 		
 		while (!openSet.isEmpty()){
 			 
-//			ProblemState x = findFMin();
+			ProblemState x = findFMin();
 			
-			ProblemState x = openSet.poll();
+//			ProblemState x = openSet.poll();
 			
 			tp.setCurrentState(x);
 
@@ -88,7 +88,7 @@ public class AStar implements Algorithm{
 				 return;
 			 }
 			 
-//			 openSet.remove(x);
+			 openSet.remove(x);
 		     closeSet.add(x);
 		     
 		     Vector<ProblemState> possible_moves = tp.getPossibleMoves(x);
