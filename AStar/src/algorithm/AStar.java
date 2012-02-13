@@ -80,7 +80,7 @@ public class AStar implements Algorithm{
 			tp.setCurrentState(x);
 
 			//TODO: just for debug
-			System.err.println("f(x) = " + x.f(goal) + ", g(x) = " + x.getG() + "\n" + x);
+//			System.err.println("f(x) = " + x.f(goal) + ", g(x) = " + x.getG() + "\n" + x);
 			
 			if (x.equals(tp.getGoalState())){
 			//	 return reconstruct_path(goal.getParent());
