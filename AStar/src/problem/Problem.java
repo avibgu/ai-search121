@@ -15,4 +15,8 @@ public interface Problem {
 	public int getDist(ProblemState from, ProblemState to);
 
 	public void setSolved(boolean b);
+
+	public ProblemState getGoalState();
+
+	public void setCurrentState(ProblemState x);
 }

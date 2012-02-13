@@ -66,7 +66,7 @@ public class TilePuzzle implements Problem {
 		if (!_currentState.equals(_goalState))
 			System.err.println("There is no solution yet..");
 		
-		System.out.println(_goalState);
+		else System.out.println(_goalState);
 	}
 
 	@Override
@@ -78,5 +78,15 @@ public class TilePuzzle implements Problem {
 	@Override
 	public void setSolved(boolean b) {
 		_solved = b;
+	}
+
+	@Override
+	public ProblemState getGoalState() {
+		return _goalState;
+	}
+
+	@Override
+	public void setCurrentState(ProblemState x) {
+		_currentState = x;
 	}
 }
