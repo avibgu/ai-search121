@@ -8,6 +8,7 @@ public class TilePuzzleState implements ProblemState{
 	protected ProblemState		parent;
 	protected int[][]			tiles;
 	protected int 				g;
+	protected int 				f;
 	protected Heuristic			heuristic;
 	
 	public TilePuzzleState(int[][] tTiles, Heuristic tHeuristic){
@@ -79,7 +80,10 @@ public class TilePuzzleState implements ProblemState{
 
 	@Override
 	public int f(ProblemState goalState) {
-		return g + heuristic.calcH(this, goalState);
+		
+		f = g + heuristic.calcH(this, goalState);
+		
+		return f;
 	}
 	
 	public int getG() {
@@ -194,5 +198,10 @@ public class TilePuzzleState implements ProblemState{
 			tTiles[ci] = tiles[ci].clone();
 		
 		return tTiles;
+	}
+
+	@Override
+	public int getF() {
+		return f;
 	}
 }

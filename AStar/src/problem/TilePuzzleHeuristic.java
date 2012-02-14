@@ -3,10 +3,10 @@ package problem;
 public class TilePuzzleHeuristic implements Heuristic {
 
 	@Override
-	public int calcH(ProblemState _currentState, ProblemState _goalState) {
+	public int calcH(ProblemState currentState, ProblemState goalState) {
 
-		TilePuzzleState cs = (TilePuzzleState)_currentState;
-		TilePuzzleState gs = (TilePuzzleState)_goalState;
+		TilePuzzleState cs = (TilePuzzleState)currentState;
+		TilePuzzleState gs = (TilePuzzleState)goalState;
 		
 		int[][] cTiles = cs.getTiles();
 		int[][] gTiles = gs.getTiles();
@@ -22,5 +22,4 @@ public class TilePuzzleHeuristic implements Heuristic {
 		
 		return cost;
 	}
-
 }

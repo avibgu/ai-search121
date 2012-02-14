@@ -69,18 +69,18 @@ public class AStar implements Algorithm{
 	public void solve(Problem tp) {
 		
 		int tentative_g_score;
-		boolean tentative_is_better;
+//		boolean tentative_is_better;
 		
 		while (!openSet.isEmpty()){
 			 
-			ProblemState x = findFMin();
+//			ProblemState x = findFMin();
 			
-//			ProblemState x = openSet.poll();
+			ProblemState x = openSet.poll();
 			
 			tp.setCurrentState(x);
 
 			//TODO: just for debug
-//			System.err.println("f(x) = " + x.f(goal) + ", g(x) = " + x.getG() + "\n" + x);
+			System.err.println("f(x) = " + x.getF() + ", g(x) = " + x.getG());
 			
 			if (x.equals(tp.getGoalState())){
 			//	 return reconstruct_path(goal.getParent());
@@ -88,35 +88,40 @@ public class AStar implements Algorithm{
 				 return;
 			 }
 			 
-			 openSet.remove(x);
+//			 openSet.remove(x);
 		     closeSet.add(x);
 		     
 		     Vector<ProblemState> possible_moves = tp.getPossibleMoves(x);
 		     
-		     for (int i = 0; i < possible_moves.size(); ++i){
-	            
-		    	 ProblemState problemState = possible_moves.get(i);
+		     for (ProblemState possibleNextState: possible_moves){
 				
-		    	 if (closeSet.contains(problemState)){
+		    	 if (closeSet.contains(possibleNextState)){
 	                 continue;
 	             }
 	             
-		    	 tentative_g_score = x.getG() + tp.getDist(x,problemState); 
+		    	 tentative_g_score = x.getG() + tp.getDist(x,possibleNextState); 
 	 
-	             if (!openSet.contains(problemState)){
-	                 openSet.add(problemState);
-	                 tentative_is_better = true;
+	             if (!openSet.contains(possibleNextState)){
+	                 possibleNextState.setParent(x);
+	                 possibleNextState.setG(tentative_g_score);
+	            	 openSet.add(possibleNextState);
+//	                 tentative_is_better = true;
 	             }
-	             else if (tentative_g_score < problemState.getG()){
-	                 tentative_is_better = true;
+	             else if (tentative_g_score < possibleNextState.getG()){
+	                 openSet.remove(possibleNextState);
+	                 possibleNextState.setParent(x);
+	                 possibleNextState.setG(tentative_g_score);
+	                 openSet.add(possibleNextState);
+//	                 tentative_is_better = true;
 	             }
-	             else{
-	                 tentative_is_better = false;
-	             }
-	             if (tentative_is_better){
-	                 problemState.setParent(x);
-	                 problemState.setG(tentative_g_score);
-	             }
+//	             else{
+//	                 tentative_is_better = false;
+//	             }
+//	             
+//	             if (tentative_is_better){
+//	                 possibleNextState.setParent(x);
+//	                 possibleNextState.setG(tentative_g_score);
+//	             }
 		     }
 		 }
 	}

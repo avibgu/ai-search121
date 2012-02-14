@@ -21,4 +21,6 @@ public interface ProblemState {
 	public String getId();
 
 	public Vector<ProblemState> getPossibleMoves();
+
+	public int getF();
 }

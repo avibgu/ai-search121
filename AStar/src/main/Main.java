@@ -6,6 +6,7 @@ import problem.ProblemState;
 import problem.TilePuzzle;
 import problem.TilePuzzleHeuristic;
 import problem.TilePuzzleState;
+import problem.TilePuzzleWeightedHeuristic;
 
 import algorithm.*;
 
@@ -22,7 +23,9 @@ public class Main {
 		int[][] initTiles = {{5,11,3,8},{13,2,6,7},{14,12,9,4},{10,1,0,15}};
 		int[][] goalTiles = {{0,1,2,3},{4,5,6,7},{8,9,10,11},{12,13,14,15}};
 		
-		Heuristic heuristic = new TilePuzzleHeuristic();
+//		Heuristic heuristic = new TilePuzzleHeuristic();
+//		Heuristic heuristic = new TilePuzzleWeightedHeuristic(2);
+		Heuristic heuristic = new TilePuzzleWeightedHeuristic(5);
 		
 		ProblemState init = new TilePuzzleState(initTiles, heuristic);
 		ProblemState goal = new TilePuzzleState(goalTiles, heuristic);
