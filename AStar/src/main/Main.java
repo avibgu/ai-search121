@@ -60,7 +60,7 @@ public class Main {
 		int[][] map = getMap();
 		
 		ProblemState init = new MapState(0, 0, map, heuristic);
-		ProblemState goal = new MapState(49, 13, map, heuristic);
+		ProblemState goal = new MapState(22, 13, map, heuristic);
 		
 		return new Map(init, goal, heuristic);
 	}
