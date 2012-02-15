@@ -19,4 +19,6 @@ public interface Problem {
 	public ProblemState getGoalState();
 
 	public void setCurrentState(ProblemState x);
+
+	public ProblemState getInitState();
 }

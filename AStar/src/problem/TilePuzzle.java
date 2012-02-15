@@ -51,7 +51,6 @@ public class TilePuzzle implements Problem {
 	
 	@Override
 	public ProblemState move(ProblemState desiredState){
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -88,5 +87,10 @@ public class TilePuzzle implements Problem {
 	@Override
 	public void setCurrentState(ProblemState x) {
 		_currentState = x;
+	}
+
+	@Override
+	public ProblemState getInitState() {
+		return _initState;
 	}
 }
