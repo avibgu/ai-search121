@@ -49,7 +49,7 @@ public class TilePuzzleState implements ProblemState{
 			sb.append("\n");
 		}
 
-		sb.append("\n");
+		sb.append("\n f(x)=" + f + "\n");
 		
 		return sb.toString();
 	}

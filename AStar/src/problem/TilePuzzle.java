@@ -68,7 +68,7 @@ public class TilePuzzle implements Problem {
 		if (!_currentState.equals(_goalState))
 			System.err.println("There is no solution yet..");
 		
-		else System.out.println(_goalState);
+		else System.out.println(_currentState + "\nnums of nodes = " + _numOfNodesVisited);
 	}
 
 	@Override
