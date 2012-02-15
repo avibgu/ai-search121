@@ -17,22 +17,22 @@ public class Main {
 //		int[][] initTiles = {{0,3},{1,2}};
 //		int[][] goalTiles = {{0,1},{2,3}};
 
-//		int[][] initTiles = {{1,4,2},{3,5,8},{6,0,7}};
-//		int[][] goalTiles = {{0,1,2},{3,4,5},{6,7,8}};
+		int[][] initTiles = {{1,4,2},{3,5,8},{6,0,7}};
+		int[][] goalTiles = {{0,1,2},{3,4,5},{6,7,8}};
 		
-		int[][] initTiles = {{5,11,3,8},{13,2,6,7},{14,12,9,4},{10,1,0,15}};
-		int[][] goalTiles = {{0,1,2,3},{4,5,6,7},{8,9,10,11},{12,13,14,15}};
+//		int[][] initTiles = {{5,11,3,8},{13,2,6,7},{14,12,9,4},{10,1,0,15}};
+//		int[][] goalTiles = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,0}};
 		
-//		Heuristic heuristic = new TilePuzzleHeuristic();
+		Heuristic heuristic = new TilePuzzleHeuristic();
 //		Heuristic heuristic = new TilePuzzleWeightedHeuristic(2);
-		Heuristic heuristic = new TilePuzzleWeightedHeuristic(5);
+//		Heuristic heuristic = new TilePuzzleWeightedHeuristic(2);
 		
 		ProblemState init = new TilePuzzleState(initTiles, heuristic);
 		ProblemState goal = new TilePuzzleState(goalTiles, heuristic);
 		
 		Problem tp = new TilePuzzle(init, goal, heuristic);
 
-		Algorithm a = new AStar(init,goal);
+		Algorithm a = new AStar();
 		
 		a.solve(tp);
 		
