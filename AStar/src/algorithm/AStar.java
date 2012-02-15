@@ -1,75 +1,54 @@
 package algorithm;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
 import problem.Problem;
 import problem.ProblemState;
+import problem.ProblemStateComparator;
 
 public class AStar implements Algorithm{
-	
-	protected ProblemState start;
-	protected ProblemState goal;
 	
 	protected PriorityQueue<ProblemState> openSet;
 	protected Vector<ProblemState> closeSet;
                                               
-	public AStar(final ProblemState pStart, final ProblemState pGoal) {
+	public AStar() {
 		
 		super();
-		
-		this.start = pStart;
-		this.goal = pGoal;
-		
+	
 		closeSet = new Vector<ProblemState>();
 		
-		openSet = new PriorityQueue<ProblemState>(11, new Comparator<ProblemState>() {
-
-			@Override
-			public int compare(ProblemState o1, ProblemState o2) {
-				
-				int o1FGoal = o1.f(pGoal);
-				int o2FGoal = o2.f(pGoal);
-				
-				if (o1FGoal < o2FGoal) return -1;
-				
-				else if(o1FGoal > o2FGoal) return 1;
-				
-				return 0;
-			}
-		});
-		
-		openSet.add(pStart);
-		
-		pStart.setG(0);
+		openSet = new PriorityQueue<ProblemState>
+			(11, new ProblemStateComparator());
 	}
 	
-	private ProblemState findFMin() {
-		
-		int min  = Integer.MAX_VALUE;
-		
-		ProblemState result = null;
-		
-		for (ProblemState state : openSet){
-			
-			int f_result = state.f(goal);
-			
-			if (f_result < min){
-				
-				min = f_result;
-				result = state;
-			}
-		}
-		
-		return result;
-	}
+//	private ProblemState findFMin() {
+//		
+//		int min  = Integer.MAX_VALUE;
+//		
+//		ProblemState result = null;
+//		
+//		for (ProblemState state : openSet){
+//			
+//			int f_result = state.f(goal);
+//			
+//			if (f_result < min){
+//				
+//				min = f_result;
+//				result = state;
+//			}
+//		}
+//		
+//		return result;
+//	}
 
 	@Override
 	public void solve(Problem tp) {
 		
 		int tentative_g_score;
 //		boolean tentative_is_better;
+		
+		openSet.add(tp.getInitState());
 		
 		while (!openSet.isEmpty()){
 			 
@@ -104,6 +83,7 @@ public class AStar implements Algorithm{
 	             if (!openSet.contains(possibleNextState)){
 	                 possibleNextState.setParent(x);
 	                 possibleNextState.setG(tentative_g_score);
+	                 possibleNextState.f(tp.getGoalState());
 	            	 openSet.add(possibleNextState);
 //	                 tentative_is_better = true;
 	             }
@@ -111,6 +91,7 @@ public class AStar implements Algorithm{
 	                 openSet.remove(possibleNextState);
 	                 possibleNextState.setParent(x);
 	                 possibleNextState.setG(tentative_g_score);
+	                 possibleNextState.f(tp.getGoalState());
 	                 openSet.add(possibleNextState);
 //	                 tentative_is_better = true;
 	             }
