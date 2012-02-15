@@ -40,7 +40,10 @@ public class AStar implements Algorithm{
 			
 			if (x.equals(problem.getGoalState())){
 
-				System.err.println("FINISH");
+				//TODO: just for debug
+				System.err.println("FINISH, nums of nodes = " + 
+						problem.getNumOfNodesVisited());
+				
 				problem.setSolved(true);
 				return;
 			 }
