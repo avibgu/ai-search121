@@ -61,7 +61,7 @@ public class Main {
 		int[][] map = FileManipulator.getMapFromFile("8room_004.map");
 		
 		ProblemState init = new MapState(2, 2, map, heuristic);
-		ProblemState goal = new MapState(101, 28, map, heuristic);
+		ProblemState goal = new MapState(468, 493, map, heuristic);
 		
 		return new Map(init, goal, heuristic);
 	}
