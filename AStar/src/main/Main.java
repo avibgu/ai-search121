@@ -1,6 +1,10 @@
 package main;
 
 import problem.Heuristic;
+import problem.Map;
+import problem.MapHeuristic;
+import problem.MapState;
+import problem.MapWeightedHeuristic;
 import problem.Problem;
 import problem.ProblemState;
 import problem.TilePuzzle;
@@ -14,6 +18,20 @@ public class Main {
 
 	public static void main(String[] args) {
 
+//		Problem p = tileProblemGenerator();
+		Problem p = mapProblemGenerator();
+
+		Algorithm a = new AStar();
+		
+		a.solve(p);
+		
+		if (p.isSolved())
+			p.printSolution();
+	}
+
+	
+	private static Problem tileProblemGenerator() {
+		
 //		int[][] initTiles = {{0,3},{1,2}};
 //		int[][] goalTiles = {{0,1},{2,3}};
 
@@ -30,14 +48,51 @@ public class Main {
 		ProblemState init = new TilePuzzleState(initTiles, heuristic);
 		ProblemState goal = new TilePuzzleState(goalTiles, heuristic);
 		
-		Problem tp = new TilePuzzle(init, goal, heuristic);
+		return new TilePuzzle(init, goal, heuristic);
+	}
+	
+	
+	private static Problem mapProblemGenerator() {
 
-		Algorithm a = new AStar();
+		Heuristic heuristic = new MapHeuristic();
+//		Heuristic heuristic = new MapWeightedHeuristic(2);
 		
-		a.solve(tp);
+		int[][] map = getMap();
 		
-		if (tp.isSolved())
-			tp.printSolution();
+		ProblemState init = new MapState(0, 0, map, heuristic);
+		ProblemState goal = new MapState(49, 13, map, heuristic);
+		
+		return new Map(init, goal, heuristic);
+	}
+
+	
+	private static int[][] getMap() {
+
+		return new int[][]{	{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0},
+							{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+							{0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0},
+							{0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0},
+							{0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+							{0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+							{0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0}	};
 	}
 
 }

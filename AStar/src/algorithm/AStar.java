@@ -59,12 +59,13 @@ public class AStar implements Algorithm{
 			tp.setCurrentState(x);
 
 			//TODO: just for debug
-			System.err.println("f(x) = " + x.getF() + ", g(x) = " + x.getG());
+			System.err.println("f(x) = " + x.getF() + ", g(x) = " + x.getG() + " " + x);
 			
 			if (x.equals(tp.getGoalState())){
 			//	 return reconstruct_path(goal.getParent());
-				 tp.setSolved(true);
-				 return;
+				System.err.println("FINISH");
+				tp.setSolved(true);
+				return;
 			 }
 			 
 //			 openSet.remove(x);
