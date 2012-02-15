@@ -11,6 +11,7 @@ public class Map implements Problem {
 	protected	Heuristic							_heuristic;
 	protected	boolean								_solved;
 	protected	java.util.Map<String, ProblemState>	_alreadyInitialized;
+	protected	int									_numOfNodesVisited;
 	
 	public Map(ProblemState initState, ProblemState goalState, Heuristic heuristic){
 		
@@ -23,6 +24,8 @@ public class Map implements Problem {
 		_solved = false;
 		
 		_alreadyInitialized = new HashMap<String, ProblemState>();
+		
+		_numOfNodesVisited = 0;
 	}
 	
 	//TODO remove from interface
@@ -93,5 +96,19 @@ public class Map implements Problem {
 	public ProblemState getInitState() {
 		return _initState;
 	}
-
+	
+	@Override
+	public void incNumOfNodesVisited() {
+		_numOfNodesVisited++;
+	}
+	
+	@Override
+	public int getNumOfNodesVisited() {
+		return _numOfNodesVisited;
+	}
+	
+	@Override
+	public void setNumOfNodesVisited(int x) {
+		_numOfNodesVisited = x;
+	}
 }

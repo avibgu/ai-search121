@@ -12,6 +12,7 @@ public class TilePuzzle implements Problem {
 	protected	Heuristic					_heuristic;
 	protected	boolean						_solved;
 	protected	Map<String, ProblemState>	_alreadyInitialized;
+	protected	int							_numOfNodesVisited;
 	
 	public TilePuzzle(ProblemState initState, ProblemState goalState, Heuristic heuristic){
 		
@@ -24,6 +25,8 @@ public class TilePuzzle implements Problem {
 		_solved = false;
 		
 		_alreadyInitialized = new HashMap<String, ProblemState>();
+		
+		_numOfNodesVisited = 0;
 	}
 	
 	@Override
@@ -92,5 +95,20 @@ public class TilePuzzle implements Problem {
 	@Override
 	public ProblemState getInitState() {
 		return _initState;
+	}
+
+	@Override
+	public void incNumOfNodesVisited() {
+		_numOfNodesVisited++;
+	}
+	
+	@Override
+	public int getNumOfNodesVisited() {
+		return _numOfNodesVisited;
+	}
+	
+	@Override
+	public void setNumOfNodesVisited(int x) {
+		_numOfNodesVisited = x;
 	}
 }

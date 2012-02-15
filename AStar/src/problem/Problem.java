@@ -21,4 +21,10 @@ public interface Problem {
 	public void setCurrentState(ProblemState x);
 
 	public ProblemState getInitState();
+
+	public void incNumOfNodesVisited();
+
+	int getNumOfNodesVisited();
+
+	void setNumOfNodesVisited(int x);
 }
