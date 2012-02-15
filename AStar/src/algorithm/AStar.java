@@ -34,15 +34,8 @@ public class AStar implements Algorithm{
 			ProblemState x = openSet.poll();
 			
 			problem.setCurrentState(x);
-
-			//TODO: just for debug
-			System.err.println("f(x) = " + x.getF() + ", g(x) = " + x.getG() + " " + x);
 			
 			if (x.equals(problem.getGoalState())){
-
-				//TODO: just for debug
-				System.err.println("FINISH, nums of nodes = " + 
-						problem.getNumOfNodesVisited());
 				
 				problem.setSolved(true);
 				return;

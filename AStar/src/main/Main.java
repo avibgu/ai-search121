@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Vector;
+
 import file.FileManipulator;
 import problem.Heuristic;
 import problem.Map;
@@ -20,14 +22,19 @@ public class Main {
 	public static void main(String[] args) {
 
 //		Problem p = tileProblemGenerator();
-		Problem p = mapProblemGenerator();
-
-		Algorithm a = new AStar();
+//		Problem p = mapProblemGenerator();
 		
-		a.solve(p);
+		Vector<Problem> problems = mapProblemsGenerator();
 		
-		if (p.isSolved())
-			p.printSolution();
+		for (Problem p : problems){
+			
+			Algorithm a = new AStar();
+			
+			a.solve(p);
+			
+			if (p.isSolved())
+				p.printSolution();
+		}
 	}
 
 	
@@ -64,5 +71,36 @@ public class Main {
 		ProblemState goal = new MapState(468, 493, map, heuristic);
 		
 		return new Map(init, goal, heuristic);
+	}
+	
+	private static Vector<Problem> mapProblemsGenerator() {
+
+		Vector<Problem> maps = new Vector<Problem>();
+		
+		int[][] map = FileManipulator.getMapFromFile("8room_004.map");
+		
+		Heuristic heuristic1 = new MapWeightedHeuristic(1);
+		Heuristic heuristic2 = new MapWeightedHeuristic(2);
+		Heuristic heuristic5 = new MapWeightedHeuristic(5);
+		Heuristic heuristic7 = new MapWeightedHeuristic(7);
+		Heuristic heuristic9 = new MapWeightedHeuristic(9);
+		Heuristic heuristic13 = new MapWeightedHeuristic(13);
+		Heuristic heuristic15 = new MapWeightedHeuristic(15);
+		Heuristic heuristic17 = new MapWeightedHeuristic(17);
+		Heuristic heuristic20 = new MapWeightedHeuristic(20);
+		Heuristic heuristic25 = new MapWeightedHeuristic(25);
+
+		maps.add(new Map(new MapState(2, 2, map, heuristic1), new MapState(468, 493, map, heuristic1), heuristic1));
+		maps.add(new Map(new MapState(2, 2, map, heuristic2), new MapState(468, 493, map, heuristic2), heuristic2));
+		maps.add(new Map(new MapState(2, 2, map, heuristic5), new MapState(468, 493, map, heuristic5), heuristic5));
+		maps.add(new Map(new MapState(2, 2, map, heuristic7), new MapState(468, 493, map, heuristic7), heuristic7));
+		maps.add(new Map(new MapState(2, 2, map, heuristic9), new MapState(468, 493, map, heuristic9), heuristic9));
+		maps.add(new Map(new MapState(2, 2, map, heuristic13), new MapState(468, 493, map, heuristic13), heuristic13));
+		maps.add(new Map(new MapState(2, 2, map, heuristic15), new MapState(468, 493, map, heuristic15), heuristic15));
+		maps.add(new Map(new MapState(2, 2, map, heuristic17), new MapState(468, 493, map, heuristic17), heuristic17));
+		maps.add(new Map(new MapState(2, 2, map, heuristic20), new MapState(468, 493, map, heuristic20), heuristic20));
+		maps.add(new Map(new MapState(2, 2, map, heuristic25), new MapState(468, 493, map, heuristic25), heuristic25));
+		
+		return maps;
 	}
 }
