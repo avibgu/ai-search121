@@ -20,6 +20,57 @@ import algorithm.*;
 public class Main {
 
 	public static void main(String[] args) {
+	
+		map2();
+	
+	}
+	
+	
+	private static void map2(){
+		
+		solve(mapProblemsGenerator(656	,2,	66,	741));
+		solve(mapProblemsGenerator(754	,99	,31,	681));//492.836
+		solve(mapProblemsGenerator(50	,725	,728,	47));//	495.593
+		solve(mapProblemsGenerator(39	,38	,767	,660));//	495.806
+		solve(mapProblemsGenerator(748	,39	,68,	744));//	499.434
+		solve(mapProblemsGenerator(767	,706	,48,	60));//	499.233
+		solve(mapProblemsGenerator(63	,4,	759,	651));//	496.333
+		solve(mapProblemsGenerator(3 ,699,	552,	61));//	499.919
+		solve(mapProblemsGenerator(691,	7,	250,	744));//	498.392
+		solve(mapProblemsGenerator(270,	757,	732,	41));//	496.907
+		solve(mapProblemsGenerator(531,	42,	84,	704));//	499.404
+		solve(mapProblemsGenerator(650,	179,	48,	707));//499.877
+		solve(mapProblemsGenerator(757,	59,	4	,428));//	497.321
+		solve(mapProblemsGenerator(7,	84,	724,	581));//	496.505
+		solve(mapProblemsGenerator(	627,	44,	357,	754	));//	500.505
+		solve(mapProblemsGenerator(516,	117,	46	,746));//	503.635
+		solve(mapProblemsGenerator(	515,	47,	133,	757));//	503.563
+		solve(mapProblemsGenerator(85,	587	,729	,102));//	501.563
+		solve(mapProblemsGenerator(7,	112,	378,	696));//	500.848
+		solve(mapProblemsGenerator(225	,743	,379	,25));//	503.877
+		solve(mapProblemsGenerator(724	,712,	355,	41));//	502.534
+		solve(mapProblemsGenerator(665	,28	,144	,445));//	503.877
+		solve(mapProblemsGenerator(34	,2,	390,	515));//	500.132
+		solve(mapProblemsGenerator(712	,756	,7,	628));//	500.019	
+		solve(mapProblemsGenerator(68	,735,	376,	154));//	505.12
+		solve(mapProblemsGenerator(723	,40	,74	,372));//	507.848
+		solve(mapProblemsGenerator(139	,345,	688,	730));//	506.818
+		solve(mapProblemsGenerator(57	,603	,86	,21));//	506.321
+		solve(mapProblemsGenerator(134	,12,	626,	570));//	504.948
+		solve(mapProblemsGenerator(24	,610	,685	,643));//	504.333
+		solve(mapProblemsGenerator(36	,10,	753,	116));//	505.161
+		solve(mapProblemsGenerator(528	,748	,212	,155));//	505.392
+		solve(mapProblemsGenerator(50	,484,	546,	24));//	505.978
+		solve(mapProblemsGenerator(617	,718	,645	,118));//	506.233
+		solve(mapProblemsGenerator(87	,467,	586,	36));//	509.362
+		solve(mapProblemsGenerator(135	,757	,754	,465));//	509.291
+		solve(mapProblemsGenerator(241	,153	,384,	686));//	509.492
+		solve(mapProblemsGenerator(439	,728	,342	,81));//	509.919
+		solve(mapProblemsGenerator(1	,341,	689,	190));//	509.049
+		
+	}
+	
+	private static void map1(){
 		solve(mapProblemsGenerator(468, 493, 2, 2));
 
 		solve(mapProblemsGenerator(465,188,61,188));//492.836
@@ -54,60 +105,14 @@ public class Main {
 		solve(mapProblemsGenerator(502,457,203,188));//	505.161
 		solve(mapProblemsGenerator(251,454,455,91));//	505.392
 		solve(mapProblemsGenerator(346,430,255,2));//	505.978
-		solve(mapProblemsGenerator(303,82,34,395));//	506.233
-		solve(mapProblemsGenerator(19,3,399,185));//	509.362
-		solve(mapProblemsGenerator(428,426,316,17));//	509.291
-		solve(mapProblemsGenerator(67,39,60,485));//	509.492
-		solve(mapProblemsGenerator(423,146,183,477));//	509.919
-		solve(mapProblemsGenerator(412,7,210,374));//	509.049
-		
-	
+		solve(mapProblemsGenerator(303,82,34,395));
+		solve(mapProblemsGenerator(19,3,399,185));
+		solve(mapProblemsGenerator(428,426,316,17));
+		solve(mapProblemsGenerator(67,39,60,485));
+		solve(mapProblemsGenerator(423,146,183,477));
+		solve(mapProblemsGenerator(412,7,210,374));
 	}
 	
-	
-	private static void map1(){
-		
-		solve(mapProblemsGenerator(339 ,412, 300, 210));
-		solve(mapProblemsGenerator(144 ,213 ,63 ,436));//492.836
-		solve(mapProblemsGenerator(308 ,98, 175, 431));//	495.593
-		solve(mapProblemsGenerator(375 ,100 ,438 ,363));//	495.806
-		solve(mapProblemsGenerator(99, 301, 240, 113));//	499.434
-		solve(mapProblemsGenerator(31,169,398,11));//	499.233
-		solve(mapProblemsGenerator(259,92,507,404));//	496.333
-		solve(mapProblemsGenerator(470,43,319,427));//	499.919
-		solve(mapProblemsGenerator(449,31,462,456));//	498.392
-		solve(mapProblemsGenerator(2,465,397,321));//	496.907
-		solve(mapProblemsGenerator(116,418,338,78));//	499.404
-		solve(mapProblemsGenerator(126,281,491,469));//499.877
-		solve(mapProblemsGenerator(25,246,434,319));//	497.321
-		solve(mapProblemsGenerator(7,21,221,356));//	496.505
-		solve(mapProblemsGenerator(486,74,228,385));//	500.505
-		solve(mapProblemsGenerator(308,465,299,55));//	503.635
-		solve(mapProblemsGenerator(21,291,427,319));//	503.563
-		solve(mapProblemsGenerator(335,114,211,506));//	501.563
-		solve(mapProblemsGenerator(20,205,381,381));//	500.848
-		solve(mapProblemsGenerator(19,106,439,45));//	503.877
-		solve(mapProblemsGenerator(143,277,506,434));//	502.534
-		solve(mapProblemsGenerator(14,116,425,26));//	503.877
-		solve(mapProblemsGenerator(27,451,318,162));//	500.132
-		solve(mapProblemsGenerator(157,35,263,440));//	500.019	
-		solve(mapProblemsGenerator(383,116,228,511));//	505.12
-		solve(mapProblemsGenerator(11,324,378,139));//	507.848
-		solve(mapProblemsGenerator(284,70,15,371));//	506.818
-		solve(mapProblemsGenerator(506,148,88,101));//	506.321
-		solve(mapProblemsGenerator(307,422,492,70));//	504.948
-		solve(mapProblemsGenerator(179,90,456,385));//	504.333
-		solve(mapProblemsGenerator(502,457,203,188));//	505.161
-		solve(mapProblemsGenerator(251,454,455,91));//	505.392
-		solve(mapProblemsGenerator(346,430,255,2));//	505.978
-		solve(mapProblemsGenerator(303,82,34,395));//	506.233
-		solve(mapProblemsGenerator(19,3,399,185));//	509.362
-		solve(mapProblemsGenerator(428,426,316,17));//	509.291
-		solve(mapProblemsGenerator(67,39,60,485));//	509.492
-		solve(mapProblemsGenerator(423,146,183,477));//	509.919
-		solve(mapProblemsGenerator(412,7,210,374));//	509.049
-		
-	}
 	private static void solve(Vector<Problem> problems){
 		
 		for (Problem p : problems) {
@@ -193,25 +198,13 @@ public class Main {
 		return new TilePuzzle(init, goal, heuristic);
 	}
 
-	private static Problem mapProblemGenerator() {
-
-		Heuristic heuristic = new MapHeuristic();
-
-		int[][] map = FileManipulator.getMapFromFile("8room_004.map");
-
-		ProblemState init = new MapState(2, 2, map, heuristic);
-		ProblemState goal = new MapState(468, 493, map, heuristic);
-
-		return new Map(init, goal, heuristic);
-	}
-
 	private static Vector<Problem> mapProblemsGenerator(int pX1, int pY1,
 			int pX2, int pY2) {
 
 		Vector<Problem> maps = new Vector<Problem>();
 
 		//int[][] map = FileManipulator.getMapFromFile("8room_004.map");
-		int[][] map = FileManipulator.getMapFromFile("divideandconquer.map");
+		int[][] map = FileManipulator.getMapFromFile("BrokenSteppes.map");
 
 		Heuristic heuristic1 = new MapWeightedHeuristic(1);
 
