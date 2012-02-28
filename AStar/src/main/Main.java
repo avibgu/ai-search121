@@ -133,6 +133,82 @@ public class Main {
 		System.out.println();
 	}
 		
+	private static Vector<Problem> tileProblemsGenerator(int[][] initTiles ) {
+		int[][] goalTiles = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,0}};
+		
+		
+		Vector<Problem> tiles = new Vector<Problem>();
+		
+		Heuristic heuristic1 = new TilePuzzleWeightedHeuristic(1);
+		Heuristic heuristic2 = new TilePuzzleWeightedHeuristic(2);
+		Heuristic heuristic5 = new TilePuzzleWeightedHeuristic(5);
+		Heuristic heuristic7 = new TilePuzzleWeightedHeuristic(7);
+		Heuristic heuristic9 = new TilePuzzleWeightedHeuristic(9);
+		Heuristic heuristic13 = new TilePuzzleWeightedHeuristic(13);
+		Heuristic heuristic15 = new TilePuzzleWeightedHeuristic(15);
+		Heuristic heuristic17 = new TilePuzzleWeightedHeuristic(17);
+		Heuristic heuristic20 = new TilePuzzleWeightedHeuristic(20);
+		Heuristic heuristic25 = new TilePuzzleWeightedHeuristic(25);
+
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic1), new TilePuzzleState(goalTiles, heuristic1), heuristic1));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic2), new TilePuzzleState(goalTiles, heuristic2), heuristic2));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic5), new TilePuzzleState(goalTiles, heuristic5), heuristic5));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic7), new TilePuzzleState(goalTiles, heuristic7), heuristic7));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic9), new TilePuzzleState(goalTiles, heuristic9), heuristic9));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic13), new TilePuzzleState(goalTiles, heuristic13), heuristic13));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic15), new TilePuzzleState(goalTiles, heuristic15), heuristic15));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic17), new TilePuzzleState(goalTiles, heuristic17), heuristic17));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic20), new TilePuzzleState(goalTiles, heuristic20), heuristic20));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initTiles,heuristic25), new TilePuzzleState(goalTiles, heuristic25), heuristic25));
+		
+		return tiles;
+	}
+	
+	
+	private static Vector<Problem> mapProblemsGenerator(int pX1, int pY1,
+			int pX2, int pY2) {
+
+		Vector<Problem> maps = new Vector<Problem>();
+
+		//int[][] map = FileManipulator.getMapFromFile("8room_004.map");
+		int[][] map = FileManipulator.getMapFromFile("BrokenSteppes.map");
+
+		Heuristic heuristic1 = new MapWeightedHeuristic(1);
+
+		Heuristic heuristic2 = new MapWeightedHeuristic(2);
+		Heuristic heuristic5 = new MapWeightedHeuristic(5);
+		Heuristic heuristic7 = new MapWeightedHeuristic(7);
+		Heuristic heuristic9 = new MapWeightedHeuristic(9);
+		Heuristic heuristic13 = new MapWeightedHeuristic(13);
+		Heuristic heuristic15 = new MapWeightedHeuristic(15);
+		Heuristic heuristic17 = new MapWeightedHeuristic(17);
+		Heuristic heuristic20 = new MapWeightedHeuristic(20);
+		Heuristic heuristic25 = new MapWeightedHeuristic(25);
+
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic1), new MapState(
+				pX2, pY2, map, heuristic1), heuristic1));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic2), new MapState(
+				pX2, pY2, map, heuristic2), heuristic2));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic5), new MapState(
+				pX2, pY2, map, heuristic5), heuristic5));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic7), new MapState(
+				pX2, pY2, map, heuristic7), heuristic7));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic9), new MapState(
+				pX2, pY2, map, heuristic9), heuristic9));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic13),
+				new MapState(pX2, pY2, map, heuristic13), heuristic13));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic15),
+				new MapState(pX2, pY2, map, heuristic15), heuristic15));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic17),
+				new MapState(pX2, pY2, map, heuristic17), heuristic17));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic20),
+				new MapState(pX2, pY2, map, heuristic20), heuristic20));
+		maps.add(new Map(new MapState(pX1, pY1, map, heuristic25),
+				new MapState(pX2, pY2, map, heuristic25), heuristic25));
+
+		return maps;
+	}
+	
 	private static Vector<Problem> tileProblemsGenerator() {
 
 		Vector<Problem> problems = new Vector<Problem>();
@@ -182,68 +258,47 @@ public class Main {
 		return problems;
 	}
 
-	private static Problem tileProblemGenerator() {
+private static void tile(){
+		
+		solve(tileProblemsGenerator(new int[][]{{1,3,7,4},{8,5,10,14},{2,11,12,6},{13,0,9,15}}));
+		solve(tileProblemsGenerator(new int[][]{{6,13,10,8},{1,5,7,2},{15,0,9,4},{14,3,12,11}}));
+		
+		solve(tileProblemsGenerator(new int[][]{{1,12,3,14},{6,13,11,5},{2,0,10,8},{15,7,4,9}}));
+		solve(tileProblemsGenerator(new int[][]{{7,0,2,6},{5,9,10,3},{14,12,4,15},{1,11,8,13}}));
+		solve(tileProblemsGenerator(new int[][]{{4,10,11,0},{14,1,7,2},{6,13,3,15},{8,12,5,9}}));
+		
+		solve(tileProblemsGenerator(new int[][]{{14,8,10,2},{9,11,5,13},{3,4,1,0},{6,7,15,12}}));
+		solve(tileProblemsGenerator(new int[][]{{8,1,2,10},{4,13,15,7},{9,14,11,0},{12,6,5,3}}));
+		solve(tileProblemsGenerator(new int[][]{{3,1,14,7},{9,15,12,10},{6,0,13,2},{4,11,5,8}}));
+		solve(tileProblemsGenerator(new int[][]{{8,1,6,2},{9,12,0,14},{7,10,3,15},{13,4,11,5}}));
+		solve(tileProblemsGenerator(new int[][]{{2,4,10,12},{0,3,9,14},{8,6,1,15},{5,13,11,7}}));
+		
+		solve(tileProblemsGenerator(new int[][]{{12,6,2,9},{11,13,1,15},{5,7,8,0},{4,3,10,14}}));
+		solve(tileProblemsGenerator(new int[][]{{11,12,1,15},{4,9,0,6},{13,8,2,7},{3,5,10,14}}));
+		solve(tileProblemsGenerator(new int[][]{{5,7,13,14},{9,1,8,3},{11,0,12,2},{6,15,4,10}}));
 
-		// int[][] initTiles = {{0,3},{1,2}};
-		// int[][] goalTiles = {{0,1},{2,3}};
+		solve(tileProblemsGenerator(new int[][]{{15,9,7,14},{11,6,5,3},{12,8,1,10},{0,4,13,2}}));
+		solve(tileProblemsGenerator(new int[][]{{13,0,6,14},{15,8,9,1},{3,11,2,10},{7,4,12,5}}));
+		
+		solve(tileProblemsGenerator(new int[][]{{6,12,11,4},{15,1,8,3},{9,13,10,0},{2,14,7,5}}));
+		solve(tileProblemsGenerator(new int[][]{{6,11,15,1},{13,3,12,4},{7,0,4,8},{9,2,10,5}}));
+		solve(tileProblemsGenerator(new int[][]{{11,2,15,1},{0,12,14,5},{3,7,4,13},{8,9,6,10}}));
+		solve(tileProblemsGenerator(new int[][]{{7,5,12,4},{1,8,13,15},{9,10,14,6},{3,11,0,2}}));
+		solve(tileProblemsGenerator(new int[][]{{5,14,15,6},{7,13,4,9},{11,0,12,1},{10,3,8,2}}));
+		
+		solve(tileProblemsGenerator(new int[][]{{12,10,3,8},{4,13,5,1},{2,9,11,0},{14,15,6,7}}));
+		solve(tileProblemsGenerator(new int[][]{{10,3,1,5},{0,14,4,7},{2,12,6,8},{9,15,13,11}}));
+		solve(tileProblemsGenerator(new int[][]{{3,5,7,4},{10,6,8,12},{9,1,13,0},{14,2,15,11}}));
+		solve(tileProblemsGenerator(new int[][]{{13,8,10,11},{4,6,0,9},{5,14,2,12},{3,1,7,15}}));
+		solve(tileProblemsGenerator(new int[][]{{15,1,11,6},{3,9,2,4},{10,5,7,12},{0,13,8,14}}));
+		
+		solve(tileProblemsGenerator(new int[][]{{2,10,6,4},{1,7,11,5},{9,8,3,0},{15,14,13,12}}));
+		solve(tileProblemsGenerator(new int[][]{{7,9,2,4},{10,6,11,3},{15,1,14,13},{8,12,0,5}}));
+		solve(tileProblemsGenerator(new int[][]{{2,3,10,14},{0,11,4,7},{1,5,12,13},{6,8,9,15}}));
+		solve(tileProblemsGenerator(new int[][]{{7,3,12,11},{14,9,0,1},{10,2,15,4},{13,8,6,5}}));
+		
 
-		int[][] initTiles = { { 1, 4, 2 }, { 3, 5, 8 }, { 6, 0, 7 } };
-		int[][] goalTiles = { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 } };
-
-		// int[][] initTiles = {{5,11,3,8},{13,2,6,7},{14,12,9,4},{10,1,0,15}};
-		// int[][] goalTiles = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,0}};
-
-		Heuristic heuristic = new TilePuzzleHeuristic();
-		// Heuristic heuristic = new TilePuzzleWeightedHeuristic(2);
-		// Heuristic heuristic = new TilePuzzleWeightedHeuristic(2);
-
-		ProblemState init = new TilePuzzleState(initTiles, heuristic);
-		ProblemState goal = new TilePuzzleState(goalTiles, heuristic);
-
-		return new TilePuzzle(init, goal, heuristic);
+		
 	}
-
-	private static Vector<Problem> mapProblemsGenerator(int pX1, int pY1,
-			int pX2, int pY2) {
-
-		Vector<Problem> maps = new Vector<Problem>();
-
-		//int[][] map = FileManipulator.getMapFromFile("8room_004.map");
-		int[][] map = FileManipulator.getMapFromFile("BrokenSteppes.map");
-
-		Heuristic heuristic1 = new MapWeightedHeuristic(1);
-
-		Heuristic heuristic2 = new MapWeightedHeuristic(2);
-		Heuristic heuristic5 = new MapWeightedHeuristic(5);
-		Heuristic heuristic7 = new MapWeightedHeuristic(7);
-		Heuristic heuristic9 = new MapWeightedHeuristic(9);
-		Heuristic heuristic13 = new MapWeightedHeuristic(13);
-		Heuristic heuristic15 = new MapWeightedHeuristic(15);
-		Heuristic heuristic17 = new MapWeightedHeuristic(17);
-		Heuristic heuristic20 = new MapWeightedHeuristic(20);
-		Heuristic heuristic25 = new MapWeightedHeuristic(25);
-
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic1), new MapState(
-				pX2, pY2, map, heuristic1), heuristic1));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic2), new MapState(
-				pX2, pY2, map, heuristic2), heuristic2));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic5), new MapState(
-				pX2, pY2, map, heuristic5), heuristic5));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic7), new MapState(
-				pX2, pY2, map, heuristic7), heuristic7));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic9), new MapState(
-				pX2, pY2, map, heuristic9), heuristic9));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic13),
-				new MapState(pX2, pY2, map, heuristic13), heuristic13));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic15),
-				new MapState(pX2, pY2, map, heuristic15), heuristic15));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic17),
-				new MapState(pX2, pY2, map, heuristic17), heuristic17));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic20),
-				new MapState(pX2, pY2, map, heuristic20), heuristic20));
-		maps.add(new Map(new MapState(pX1, pY1, map, heuristic25),
-				new MapState(pX2, pY2, map, heuristic25), heuristic25));
-
-		return maps;
-	}
+	
 }
