@@ -79,7 +79,7 @@ public class Map implements Problem {
 		if (!_currentState.equals(_goalState))
 			System.err.println("There is no solution yet..");
 		
-		else System.out.println(_currentState + " nums of nodes = " + _numOfNodesVisited);
+		else System.out.println(_currentState + "," + _numOfNodesVisited);
 	}
 
 	@Override

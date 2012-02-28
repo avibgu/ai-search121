@@ -2,7 +2,7 @@ package problem;
 
 public class MapWeightedHeuristic extends MapHeuristic {
 
-private static final int DEFAULT_W = 2;
+private static final int DEFAULT_W = 1;
 	
 	protected int w;
 

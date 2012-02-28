@@ -1,7 +1,8 @@
 package problem;
 
 public class MapHeuristic implements Heuristic {
-
+	
+	
 	@Override
 	public int calcH(ProblemState currentState, ProblemState goalState) {
 
