@@ -28,6 +28,8 @@ public class Main {
 	
 	private static void map2(){
 		
+		
+		// SHIRAN
 		solve(mapProblemsGenerator(656	,2,	66,	741));
 		solve(mapProblemsGenerator(754	,99	,31,	681));//492.836
 		solve(mapProblemsGenerator(50	,725	,728,	47));//	495.593
@@ -47,6 +49,9 @@ public class Main {
 		solve(mapProblemsGenerator(	515,	47,	133,	757));//	503.563
 		solve(mapProblemsGenerator(85,	587	,729	,102));//	501.563
 		solve(mapProblemsGenerator(7,	112,	378,	696));//	500.848
+	
+		
+		//AVI
 		solve(mapProblemsGenerator(225	,743	,379	,25));//	503.877
 		solve(mapProblemsGenerator(724	,712,	355,	41));//	502.534
 		solve(mapProblemsGenerator(665	,28	,144	,445));//	503.877
