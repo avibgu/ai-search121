@@ -112,7 +112,7 @@ public class MapState implements ProblemState {
 	
 	@Override
 	public String toString() {
-		return "f(x) = " + f + ", g(x) = " + g + " " + "(" + x + "," + y + ")";
+		return Integer.toString(f);
 	}
 
 	public int getX() {
