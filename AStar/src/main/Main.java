@@ -20,21 +20,64 @@ import algorithm.*;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		solve(mapProblemsGenerator(468, 493, 2, 2));
 
-		Vector<Problem> problems = mapProblemsGenerator(468, 493, 2, 2);
-		// Vector<Problem> problems = tileProblemsGenerator();
-
+		solve(mapProblemsGenerator(465,188,61,188));//492.836
+		solve(mapProblemsGenerator(101,332,509,337));//	495.593
+		solve(mapProblemsGenerator(77,437,109,17));//	495.806
+		solve(mapProblemsGenerator(331,436,21,203));//	499.434
+		solve(mapProblemsGenerator(31,169,398,11));//	499.233
+		solve(mapProblemsGenerator(259,92,507,404));//	496.333
+		solve(mapProblemsGenerator(470,43,319,427));//	499.919
+		solve(mapProblemsGenerator(449,31,462,456));//	498.392
+		solve(mapProblemsGenerator(2,465,397,321));//	496.907
+		solve(mapProblemsGenerator(116,418,338,78));//	499.404
+		solve(mapProblemsGenerator(126,281,491,469));//499.877
+		solve(mapProblemsGenerator(25,246,434,319));//	497.321
+		solve(mapProblemsGenerator(7,21,221,356));//	496.505
+		solve(mapProblemsGenerator(486,74,228,385));//	500.505
+		solve(mapProblemsGenerator(308,465,299,55));//	503.635
+		solve(mapProblemsGenerator(21,291,427,319));//	503.563
+		solve(mapProblemsGenerator(335,114,211,506));//	501.563
+		solve(mapProblemsGenerator(20,205,381,381));//	500.848
+		solve(mapProblemsGenerator(19,106,439,45));//	503.877
+		solve(mapProblemsGenerator(143,277,506,434));//	502.534
+		solve(mapProblemsGenerator(14,116,425,26));//	503.877
+		solve(mapProblemsGenerator(27,451,318,162));//	500.132
+		solve(mapProblemsGenerator(157,35,263,440));//	500.019	
+		solve(mapProblemsGenerator(383,116,228,511));//	505.12
+		solve(mapProblemsGenerator(11,324,378,139));//	507.848
+		solve(mapProblemsGenerator(284,70,15,371));//	506.818
+		solve(mapProblemsGenerator(506,148,88,101));//	506.321
+		solve(mapProblemsGenerator(307,422,492,70));//	504.948
+		solve(mapProblemsGenerator(179,90,456,385));//	504.333
+		solve(mapProblemsGenerator(502,457,203,188));//	505.161
+		solve(mapProblemsGenerator(251,454,455,91));//	505.392
+		solve(mapProblemsGenerator(346,430,255,2));//	505.978
+		solve(mapProblemsGenerator(303,82,34,395));//	506.233
+		solve(mapProblemsGenerator(19,3,399,185));//	509.362
+		solve(mapProblemsGenerator(428,426,316,17));//	509.291
+		solve(mapProblemsGenerator(67,39,60,485));//	509.492
+		solve(mapProblemsGenerator(423,146,183,477));//	509.919
+		solve(mapProblemsGenerator(412,7,210,374));//	509.049
+	}
+	
+	private static void solve(Vector<Problem> problems){
+		
 		for (Problem p : problems) {
-
+	
 			Algorithm a = new AStar();
-
+	
 			a.solve(p);
-
+	
 			if (p.isSolved())
 				p.printSolution();
 		}
+		
+		System.out.println();
 	}
-
+		
 	private static Vector<Problem> tileProblemsGenerator() {
 
 		Vector<Problem> problems = new Vector<Problem>();
