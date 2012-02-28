@@ -24,7 +24,7 @@ public class Main {
 		solve(mapProblemsGenerator(468, 493, 2, 2));
 
 		solve(mapProblemsGenerator(465,188,61,188));//492.836
-		solve(mapProblemsGenerator(101,332,509,337));//	495.593
+	/*	solve(mapProblemsGenerator(101,332,509,337));//	495.593
 		solve(mapProblemsGenerator(77,437,109,17));//	495.806
 		solve(mapProblemsGenerator(331,436,21,203));//	499.434
 		solve(mapProblemsGenerator(31,169,398,11));//	499.233
@@ -60,7 +60,7 @@ public class Main {
 		solve(mapProblemsGenerator(428,426,316,17));//	509.291
 		solve(mapProblemsGenerator(67,39,60,485));//	509.492
 		solve(mapProblemsGenerator(423,146,183,477));//	509.919
-		solve(mapProblemsGenerator(412,7,210,374));//	509.049
+		solve(mapProblemsGenerator(412,7,210,374));//	509.049*/
 	}
 	
 	private static void solve(Vector<Problem> problems){

@@ -21,7 +21,7 @@ public class TilePuzzle implements Problem {
 		_goalState = goalState;
 		
 		_heuristic = heuristic;
-		
+	
 		_solved = false;
 		
 		_alreadyInitialized = new HashMap<String, ProblemState>();

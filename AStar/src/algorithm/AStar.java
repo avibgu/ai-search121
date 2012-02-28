@@ -46,13 +46,20 @@ public class AStar implements Algorithm {
 			Vector<ProblemState> possible_moves = problem.getPossibleMoves(x);
 
 			for (ProblemState possibleNextState : possible_moves) {
-
+				
+				tentative_g_score = x.getG()
+				+ problem.getDist(x, possibleNextState);
+				
 				if (closeSet.contains(possibleNextState)) {
-					continue;
+					if (tentative_g_score < possibleNextState.getG() ){
+						closeSet.remove(possibleNextState);
+						addStateToOpenList(problem, tentative_g_score, x,
+								possibleNextState);
+					}
+					else continue;
 				}
 
-				tentative_g_score = x.getG()
-						+ problem.getDist(x, possibleNextState);
+				
 
 				if (!openSet.contains(possibleNextState)) {
 					addStateToOpenList(problem, tentative_g_score, x,
