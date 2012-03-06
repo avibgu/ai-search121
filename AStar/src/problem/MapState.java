@@ -11,11 +11,14 @@ public class MapState implements ProblemState {
 	
 	protected int			f;
 	protected int			g;
+	protected int			h;
 
 	protected String		id;
 	protected ProblemState	parent;
 
 	protected Heuristic		heuristic;
+	
+
 	
 	public MapState(int pX, int pY, int[][] pMap, Heuristic pHeuristic) {
 
@@ -26,6 +29,7 @@ public class MapState implements ProblemState {
 		
 		f = 0;
 		g = 0;
+		h = -1;
 		
 		id = x + "." + y;
 
@@ -46,7 +50,10 @@ public class MapState implements ProblemState {
 	@Override
 	public int f(ProblemState goalState) {
 		
-		f = g + heuristic.calcH(this, goalState);
+		if (-1 == h)
+			h = heuristic.calcH(this, goalState);
+		
+		f = g + h;
 		
 		return f;
 	}
