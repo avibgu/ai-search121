@@ -1,6 +1,8 @@
 package algorithm;
 
+import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.Vector;
 
 import problem.Problem;
@@ -10,14 +12,14 @@ import problem.ProblemStateComparator;
 public class AStar implements Algorithm {
 
 	protected PriorityQueue<ProblemState> openSet;
-	protected Vector<ProblemState> closeSet;
+	protected Set<ProblemState> closeSet;
 
 	public AStar() {
 
 		super();
 
-		closeSet = new Vector<ProblemState>();
-		
+		closeSet = new HashSet<ProblemState>();
+
 		openSet = new PriorityQueue<ProblemState>(11,
 				new ProblemStateComparator());
 	}
@@ -27,12 +29,27 @@ public class AStar implements Algorithm {
 
 		int tentative_g_score;
 
-		openSet.add(problem.getInitState());
+		addStateToOpenList(problem, 0, null, problem.getInitState());
+				
+//		int lastF = problem.getInitState().getF();
 
 		while (!openSet.isEmpty()) {
 
 			ProblemState x = openSet.poll();
 
+//			System.out.println(x);
+//			
+//			if (lastF > x.getF())
+//				try {
+//					throw new Exception("NON ADMISSIBLE");
+//				} catch (Exception e) {
+//					System.err.println("lastF    = " + lastF);
+//					System.err.println("x.getF() = " + x.getF());
+//					return;
+//				}
+//			
+//			lastF = x.getF();
+						
 			problem.setCurrentState(x);
 
 			if (x.equals(problem.getGoalState())) {
@@ -46,20 +63,24 @@ public class AStar implements Algorithm {
 			Vector<ProblemState> possible_moves = problem.getPossibleMoves(x);
 
 			for (ProblemState possibleNextState : possible_moves) {
-				
+
 				tentative_g_score = x.getG()
-				+ problem.getDist(x, possibleNextState);
-				
+						+ problem.getDist(x, possibleNextState);
+
 				if (closeSet.contains(possibleNextState)) {
-					if (tentative_g_score < possibleNextState.getG() ){
+					if (tentative_g_score < possibleNextState.getG()) {
+
+//						System.err.println(possibleNextState + " G = "
+//								+ possibleNextState.getG() + " tentative = "
+//								+ tentative_g_score);
+
 						closeSet.remove(possibleNextState);
 						addStateToOpenList(problem, tentative_g_score, x,
 								possibleNextState);
-					}
-					else continue;
-				}
 
-				
+					} else
+						continue;
+				}
 
 				if (!openSet.contains(possibleNextState)) {
 					addStateToOpenList(problem, tentative_g_score, x,
