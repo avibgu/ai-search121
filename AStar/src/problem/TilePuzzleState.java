@@ -10,12 +10,14 @@ public class TilePuzzleState implements ProblemState{
 	protected int 				g;
 	protected int 				f;
 	protected Heuristic			heuristic;
+	private int h;
 	
 	public TilePuzzleState(int[][] tTiles, Heuristic tHeuristic){
 		
 		setTiles(tTiles);
 		heuristic = tHeuristic;
 		calcId();
+		h = -1;
 	}
 	
 	public void calcId() {
@@ -81,7 +83,10 @@ public class TilePuzzleState implements ProblemState{
 	@Override
 	public int f(ProblemState goalState) {
 		
-		f = g + heuristic.calcH(this, goalState);
+		if (-1 == h)
+			h = heuristic.calcH(this, goalState);
+		
+		f = g + h;
 		
 		return f;
 	}
