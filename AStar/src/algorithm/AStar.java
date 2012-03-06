@@ -37,6 +37,8 @@ public class AStar implements Algorithm {
 
 			ProblemState x = openSet.poll();
 
+//			problem.incNumOfNodesVisited();//TODO: num of expended..
+//			
 //			System.out.println(x);
 //			
 //			if (lastF > x.getF())
@@ -102,6 +104,6 @@ public class AStar implements Algorithm {
 		possibleNextState.f(problem.getGoalState());
 		openSet.add(possibleNextState);
 
-		problem.incNumOfNodesVisited();
+		problem.incNumOfNodesVisited(); //TODO: num of generated..
 	}
 }
