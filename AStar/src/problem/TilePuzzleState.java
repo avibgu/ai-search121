@@ -41,19 +41,21 @@ public class TilePuzzleState implements ProblemState{
 	@Override
 	public String toString(){
 		
-		StringBuffer sb = new StringBuffer();
+//		StringBuffer sb = new StringBuffer();
+//		
+//		for (int[] row: getTiles()){
+//			
+//			for (int cellValue: row)
+//				sb.append(cellValue + "\t");
+//				
+//			sb.append("\n");
+//		}
+//
+//		sb.append("\n f(x)=" + f + "\n");
+//		
+//		return sb.toString();
 		
-		for (int[] row: getTiles()){
-			
-			for (int cellValue: row)
-				sb.append(cellValue + "\t");
-				
-			sb.append("\n");
-		}
-
-		sb.append("\n f(x)=" + f + "\n");
-		
-		return sb.toString();
+		return Integer.toString(f);
 	}
 
 	@Override
