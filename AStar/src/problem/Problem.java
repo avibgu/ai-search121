@@ -27,4 +27,6 @@ public interface Problem {
 	int getNumOfNodesVisited();
 
 	void setNumOfNodesVisited(int x);
+	
+	public void setRunningTime(long runningTime);
 }

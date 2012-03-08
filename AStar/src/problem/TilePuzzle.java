@@ -13,6 +13,7 @@ public class TilePuzzle implements Problem {
 	protected	boolean						_solved;
 	protected	Map<String, ProblemState>	_alreadyInitialized;
 	protected	int							_numOfNodesVisited;
+	protected	long						_runningTime;
 	
 	public TilePuzzle(ProblemState initState, ProblemState goalState, Heuristic heuristic){
 		
@@ -68,7 +69,7 @@ public class TilePuzzle implements Problem {
 		if (!_currentState.equals(_goalState))
 			System.err.println("There is no solution yet..");
 		
-		else System.out.println(_currentState + "," + _numOfNodesVisited);
+		else System.out.println(_currentState + "," + _numOfNodesVisited +"," + _runningTime );
 	}
 
 	@Override
@@ -110,5 +111,11 @@ public class TilePuzzle implements Problem {
 	@Override
 	public void setNumOfNodesVisited(int x) {
 		_numOfNodesVisited = x;
+	}
+
+	@Override
+	public void setRunningTime(long runningTime) {
+		this._runningTime = runningTime;
+		
 	}
 }
