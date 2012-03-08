@@ -26,84 +26,74 @@ public class AStar implements Algorithm {
 
 	@Override
 	public void solve(Problem problem) {
-
+		long startTime = System.currentTimeMillis();
 		int tentative_g_score;
+		int tentative_f_score;
 
-		addStateToOpenList(problem, 0, null, problem.getInitState());
-				
-//		int lastF = problem.getInitState().getF();
+		openSet.add(problem.getInitState());
+		problem.getInitState().setG(0);
+		problem.getInitState().f(problem.getGoalState());
 
 		while (!openSet.isEmpty()) {
 
 			ProblemState x = openSet.poll();
 
-//			problem.incNumOfNodesVisited();//TODO: num of expended..
-//			
-//			System.out.println(x);
-//			
-//			if (lastF > x.getF())
-//				try {
-//					throw new Exception("NON ADMISSIBLE");
-//				} catch (Exception e) {
-//					System.err.println("lastF    = " + lastF);
-//					System.err.println("x.getF() = " + x.getF());
-//					return;
-//				}
-//			
-//			lastF = x.getF();
-						
 			problem.setCurrentState(x);
 
 			if (x.equals(problem.getGoalState())) {
 
 				problem.setSolved(true);
+				problem.setRunningTime((System.currentTimeMillis() - startTime));
 				return;
 			}
 
 			closeSet.add(x);
-
+						
 			Vector<ProblemState> possible_moves = problem.getPossibleMoves(x);
 
 			for (ProblemState possibleNextState : possible_moves) {
 
-				tentative_g_score = x.getG()
-						+ problem.getDist(x, possibleNextState);
+				tentative_g_score = x.getG() + problem.getDist(x, possibleNextState);
 
+				tentative_f_score = tentative_g_score + possibleNextState.getHeuristic(problem.getGoalState());
+			
 				if (closeSet.contains(possibleNextState)) {
-					if (tentative_g_score < possibleNextState.getG()) {
-
-//						System.err.println(possibleNextState + " G = "
-//								+ possibleNextState.getG() + " tentative = "
-//								+ tentative_g_score);
-
+				
+					if (tentative_f_score < possibleNextState.getF()) {
 						closeSet.remove(possibleNextState);
-						addStateToOpenList(problem, tentative_g_score, x,
-								possibleNextState);
-
+						possibleNextState.setParent(x);
+						possibleNextState.setG(tentative_g_score);
+						possibleNextState.setF(tentative_f_score);
+						openSet.add(possibleNextState);
 					} else
 						continue;
 				}
 
-				if (!openSet.contains(possibleNextState)) {
+				else if (!openSet.contains(possibleNextState)) {
 					addStateToOpenList(problem, tentative_g_score, x,
-							possibleNextState);
-				} else if (tentative_g_score < possibleNextState.getG()) {
+							possibleNextState,tentative_f_score);
+				} else if (tentative_f_score < possibleNextState.getF()) {
 					openSet.remove(possibleNextState);
-					addStateToOpenList(problem, tentative_g_score, x,
-							possibleNextState);
+					possibleNextState.setParent(x);
+					possibleNextState.setG(tentative_g_score);
+					possibleNextState.setF(tentative_f_score);
+					openSet.add(possibleNextState);
 				}
 			}
 		}
+		
 	}
 
 	private void addStateToOpenList(Problem problem, int tentative_g_score,
-			ProblemState x, ProblemState possibleNextState) {
+			ProblemState x, ProblemState possibleNextState,int tentative_f_score) {
 
 		possibleNextState.setParent(x);
 		possibleNextState.setG(tentative_g_score);
-		possibleNextState.f(problem.getGoalState());
+		possibleNextState.setF(tentative_f_score);
 		openSet.add(possibleNextState);
 
-		problem.incNumOfNodesVisited(); //TODO: num of generated..
+		problem.incNumOfNodesVisited(); 
 	}
+	
+
 }
