@@ -16,6 +16,8 @@ public interface ProblemState {
 		
 	public void setG(int g);
 	
+	public void setF(int f);
+	
 	public void setId(String id);
 	
 	public String getId();
@@ -23,4 +25,7 @@ public interface ProblemState {
 	public Vector<ProblemState> getPossibleMoves();
 
 	public int getF();
+	
+	public int getHeuristic(ProblemState goalState);
+	
 }

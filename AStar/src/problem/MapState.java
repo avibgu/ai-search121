@@ -130,4 +130,18 @@ public class MapState implements ProblemState {
 		return y;
 	}
 
+	@Override
+	public void setF(int f) {
+		this.f = f;
+		
+	}
+
+	@Override
+	public int getHeuristic(ProblemState goalState) {
+		if (-1 == h)
+			h = heuristic.calcH(this, goalState);
+		
+		return h;
+	}
+
 }

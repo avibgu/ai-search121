@@ -18,6 +18,8 @@ public class TilePuzzleState implements ProblemState{
 		heuristic = tHeuristic;
 		calcId();
 		h = -1;
+		f=99999999;
+		g=99999999;
 	}
 	
 	public void calcId() {
@@ -91,6 +93,12 @@ public class TilePuzzleState implements ProblemState{
 		f = g + h;
 		
 		return f;
+	}
+	
+	public int getHeuristic(ProblemState goalState){
+		if (-1 == h)
+			h = heuristic.calcH(this, goalState);
+		return h;
 	}
 	
 	public int getG() {
@@ -210,5 +218,11 @@ public class TilePuzzleState implements ProblemState{
 	@Override
 	public int getF() {
 		return f;
+	}
+
+	@Override
+	public void setF(int f) {
+		this.f = f;
+		
 	}
 }
