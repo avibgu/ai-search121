@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class FileManipulator {
 
-	public static StringBuilder readFromFile(String fileName) {
+	public static StringBuilder readFromFile(String fileName, boolean toRemove) {
 
 		File file = new File(fileName);
 
@@ -24,8 +24,9 @@ public class FileManipulator {
 			br = new BufferedReader(isr);
 
 			//TODO: to remove the top 4 lines
-			for (int i = 0; i < 4; i++)
-				br.readLine();			
+			if (toRemove)
+				for (int i = 0; i < 4; i++)
+					br.readLine();			
 			
 			while (br.ready())
 				sb.append(br.readLine() + "\n");
@@ -62,7 +63,7 @@ public class FileManipulator {
 	
 	
 	public static int[][] getMapFromFile(String fileName){
-		return StringToMap(readFromFile(fileName).toString());
+		return StringToMap(readFromFile(fileName, true).toString());
 	}	
 	
 	public static int[][] getTestMap() {
