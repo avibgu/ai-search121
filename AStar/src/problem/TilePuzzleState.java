@@ -22,6 +22,28 @@ public class TilePuzzleState implements ProblemState{
 		g=99999999;
 	}
 	
+	public TilePuzzleState(String puzzle, Heuristic tHeuristic) {
+
+		puzzle = puzzle.trim();
+		
+		String[] splitted = puzzle.split(" ");
+		
+		int n = (int) Math.sqrt(splitted.length);
+		
+		int[][] tiles = new int[n][n];
+		
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < n; j++)
+				tiles[i][j] = Integer.parseInt(splitted[i*n+j]);
+		
+		setTiles(tiles);
+		heuristic = tHeuristic;
+		calcId();
+		h = -1;
+		f=99999999;
+		g=99999999;
+	}
+
 	public void calcId() {
 		
 		StringBuffer sb = new StringBuffer();
