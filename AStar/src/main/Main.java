@@ -27,8 +27,10 @@ public class Main {
 	
 		//map2();
 		//yanir1();
-		tile();
+//		tile();
 //		yanir2();
+		
+		new Thread(new AutomaticTilePuzzleTester("test.txt")).start();
 	}
 	
 	
