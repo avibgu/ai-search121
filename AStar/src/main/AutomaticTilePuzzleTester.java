@@ -52,7 +52,7 @@ public class AutomaticTilePuzzleTester implements Runnable{
 	@Override
 	public void run() {
 
-		StringBuilder fileContent = FileManipulator.readFromFile(fileName);
+		StringBuilder fileContent = FileManipulator.readFromFile(fileName, false);
 		
 		Vector<TilePuzzleState> initStates = fromFileToTileStates(fileContent);
 		
@@ -71,7 +71,7 @@ public class AutomaticTilePuzzleTester implements Runnable{
 		Heuristic heuristic = null;
 		 
 		for (String line : lines)
-			if (!line.isEmpty())
+			if (!line.equals(""))
 				ans.add(new TilePuzzleState(line, heuristic));
 			
 		return ans;
@@ -81,16 +81,16 @@ public class AutomaticTilePuzzleTester implements Runnable{
 		
 		Vector<Problem> tiles = new Vector<Problem>();
 
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic1), heuristic1));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic2), heuristic2));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic5), heuristic5));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic7), heuristic7));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic9), heuristic9));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic13), heuristic13));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic15), heuristic15));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic17), heuristic17));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic20), heuristic20));
-		tiles.add(new TilePuzzle(initState, new TilePuzzleState(goalTiles, heuristic25), heuristic25));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic1) , new TilePuzzleState(goalTiles, heuristic1), heuristic1));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic2), new TilePuzzleState(goalTiles, heuristic2), heuristic2));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic5), new TilePuzzleState(goalTiles, heuristic5), heuristic5));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic7), new TilePuzzleState(goalTiles, heuristic7), heuristic7));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic9), new TilePuzzleState(goalTiles, heuristic9), heuristic9));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic13), new TilePuzzleState(goalTiles, heuristic13), heuristic13));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic15), new TilePuzzleState(goalTiles, heuristic15), heuristic15));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic17), new TilePuzzleState(goalTiles, heuristic17), heuristic17));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic20), new TilePuzzleState(goalTiles, heuristic20), heuristic20));
+		tiles.add(new TilePuzzle(new TilePuzzleState(initState.getTiles(), heuristic25), new TilePuzzleState(goalTiles, heuristic25), heuristic25));
 		
 		return tiles;
 	}
