@@ -27,8 +27,8 @@ public class Main {
 	
 		//map2();
 		//yanir1();
-		//tile();
-		yanir2();
+		tile();
+//		yanir2();
 	}
 	
 	
@@ -127,7 +127,7 @@ public class Main {
 		solve(mapProblemsGenerator(412,7,210,374));
 	}
 	
-	private static void solve(Vector<Problem> problems){
+	private static void old_solve(Vector<Problem> problems){
 		
 		for (Problem p : problems) {
 	
@@ -139,6 +139,34 @@ public class Main {
 				p.printSolution();
 			
 			System.out.flush();
+		}
+		
+		System.out.println();
+	}
+	
+	private static void solve(Vector<Problem> problems){
+		
+		Algorithm a;
+		Problem p;
+		
+		while (!problems.isEmpty()) {
+	
+			a = new AStar();
+			p = problems.firstElement();
+			
+			problems.removeElementAt(0);
+			
+			a.solve(p);
+	
+			if (p.isSolved())
+				p.printSolution();
+			
+			System.out.flush();
+			
+			a = null;
+			p = null;
+			
+			System.gc();
 		}
 		
 		System.out.println();
